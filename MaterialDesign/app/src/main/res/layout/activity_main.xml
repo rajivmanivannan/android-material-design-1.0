@@ -27,7 +27,7 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -45,7 +45,7 @@
             android:id="@+id/frame_container"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/appBarLayout" />
+            android:layout_below="@+id/app_bar_layout" />
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

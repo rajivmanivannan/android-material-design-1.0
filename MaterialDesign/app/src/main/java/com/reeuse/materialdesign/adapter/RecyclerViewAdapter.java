@@ -15,13 +15,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.reeuse.materialdesign.R;
+import com.reeuse.materialdesign.customviews.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import com.reeuse.materialdesign.model.UserItem;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+
 
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements View.OnClickListener {
@@ -68,12 +69,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
-        public CircleImageView profileImage;
+        public CircularImageView profileImage;
         public TextView userName;
         public TextView totalPoints;
         public ViewHolder(View itemView) {
             super(itemView);
-            profileImage = (CircleImageView) itemView.findViewById(R.id.profile_image);
+            profileImage = (CircularImageView) itemView.findViewById(R.id.profile_image);
             userName = (TextView) itemView.findViewById(R.id.user_name);
             totalPoints = (TextView) itemView.findViewById(R.id.total_points);
         }

@@ -16,29 +16,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_home"
+            android:id="@+id/menu_widget"
             android:checked="true"
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/menu_favourite"
+            android:id="@+id/menu_fab"
             android:icon="@drawable/ic_favorite"
-            android:title="@string/menu_favourite" />
-
+            android:title="@string/menu_fab" />
+        <item
+            android:id="@+id/menu_snack_bar"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/menu_snack_bar" />
+        <item
+            android:id="@+id/menu_recycler"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/menu_recycler" />
         <item android:title="@string/sub_menu_title">
             <menu>
                 <item
                     android:id="@+id/sub_menu_settings"
                     android:icon="@drawable/ic_settings"
                     android:title="@string/sub_menu_settings" />
-                <item
-                    android:id="@+id/sub_menu_info"
-                    android:icon="@drawable/ic_info"
-                    android:title="@string/sub_menu_about" />
-                <item
-                    android:id="@+id/sub_menu_help"
-                    android:icon="@drawable/ic_help"
-                    android:title="@string/sub_menu_help" />
             </menu>
         </item>
     </group>

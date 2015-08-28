@@ -24,7 +24,7 @@
     android:paddingBottom="8dp"
     android:gravity="center_vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.reeuse.materialdesign.customviews.CircularImageView
         android:id="@+id/profile_image"
         android:layout_width="@dimen/list_item_avatar_size"
         android:layout_height="@dimen/list_item_avatar_size"

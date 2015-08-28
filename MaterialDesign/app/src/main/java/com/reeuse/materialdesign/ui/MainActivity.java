@@ -1,8 +1,11 @@
 package com.reeuse.materialdesign.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,11 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.reeuse.materialdesign.R;
-import com.reeuse.materialdesign.ui.fragment.FavoriteFragment;
+import com.reeuse.materialdesign.ui.fragment.FloatingActionButtonFragment;
 import com.reeuse.materialdesign.ui.fragment.HomeFragment;
 
 
-public class MainActivity extends AppCompatActivity implements FavoriteFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
@@ -30,21 +33,29 @@ public class MainActivity extends AppCompatActivity implements FavoriteFragment.
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         setUpAppBar();
+        setUpToolBar();
         setUpNavigationDrawer();
         setUpFragment(new HomeFragment());
 
     }
 
     private void setUpAppBar() {
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+        appBarLayout.animate();
+    }
+
+    private void setUpToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //To show the default menu icon
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
+        /**
+         * To animate the menu to arrow and arrow to menu back while tapping the home menu.
+         */
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name) {
             @Override
             public void onDrawerClosed(View view) {
@@ -52,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements FavoriteFragment.
                 invalidateOptionsMenu();
                 syncState();
             }
+
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -68,19 +80,18 @@ public class MainActivity extends AppCompatActivity implements FavoriteFragment.
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.menu_home:
-                        menuItem.setChecked(true);
+                    case R.id.menu_widget:
                         setUpFragment(new HomeFragment());
                         break;
-                    case R.id.menu_favourite:
-                        setUpFragment(FavoriteFragment.newInstance("Favorite"));
-                        menuItem.setChecked(true);
+                    case R.id.menu_fab:
+                        setUpFragment(new FloatingActionButtonFragment());
+                        break;
+                    case R.id.menu_snack_bar:
+                        break;
+                    case R.id.menu_recycler:
+
                         break;
                     case R.id.sub_menu_settings:
-                        break;
-                    case R.id.sub_menu_info:
-                        break;
-                    case R.id.sub_menu_help:
                         break;
                 }
                 drawerLayout.closeDrawers();
@@ -91,10 +102,16 @@ public class MainActivity extends AppCompatActivity implements FavoriteFragment.
 
     private void setUpFragment(Fragment fragment) {
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame_container, fragment);
-            fragmentTransaction.addToBackStack(fragment.getClass().getName());
-            fragmentTransaction.commit();
+            String fragmentName = fragment.getClass().getName();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            boolean isFragmentPopped = fragmentManager.popBackStackImmediate(fragmentName, 0);
+
+            if (!isFragmentPopped && fragmentManager.findFragmentByTag(fragmentName) == null) {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_container, fragment, fragmentName);
+                fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+                fragmentTransaction.commit();
+            }
         }
     }
 
@@ -109,12 +126,20 @@ public class MainActivity extends AppCompatActivity implements FavoriteFragment.
         if (item.getItemId() == android.R.id.home) {
             drawerLayout.openDrawer(GravityCompat.START);
             return true;
+        } else if (item.getItemId() == R.id.action_search) {
+            //implementation for search
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFragmentInteraction(String id) {
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1)
+            ActivityCompat.finishAffinity(this);
+        else
+            super.onBackPressed();
     }
+
 }
