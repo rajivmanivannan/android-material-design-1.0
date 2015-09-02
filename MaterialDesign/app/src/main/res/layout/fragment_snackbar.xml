@@ -14,13 +14,17 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_framelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
-    tools:context="com.reeuse.materialdesign.ui.fragment.HomeFragment">
+    tools:context="com.reeuse.materialdesign.ui.fragment.SnackbarFragment">
 
-
-
-</RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_snackbar"
+        android:id="@+id/snackbar_button"
+        android:layout_gravity="center" />
+</FrameLayout>

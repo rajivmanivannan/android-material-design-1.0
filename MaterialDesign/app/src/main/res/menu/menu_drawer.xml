@@ -32,6 +32,18 @@
             android:id="@+id/menu_recycler"
             android:icon="@drawable/ic_favorite"
             android:title="@string/menu_recycler" />
+        <item
+            android:id="@+id/menu_collapsing_tb"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/menu_collapsing_tb" />
+        <item
+            android:id="@+id/menu_tab_layout"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/menu_tab_layout" />
+        <item
+            android:id="@+id/menu_palette"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/menu_palette" />
         <item android:title="@string/sub_menu_title">
             <menu>
                 <item

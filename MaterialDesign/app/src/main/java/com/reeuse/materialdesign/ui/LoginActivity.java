@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         userNameTil = (TextInputLayout) findViewById(R.id.til_user_name);
-        userNameTil = (TextInputLayout) findViewById(R.id.til_user_name);
+        passwordTil = (TextInputLayout) findViewById(R.id.til_password);
 
         userNameEt = (EditText) findViewById(R.id.et_user_name);
         passwordEt = (EditText) findViewById(R.id.et_password);

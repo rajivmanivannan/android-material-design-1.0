@@ -1,5 +1,6 @@
 package com.reeuse.materialdesign.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,7 @@ import android.view.View;
 import com.reeuse.materialdesign.R;
 import com.reeuse.materialdesign.ui.fragment.FloatingActionButtonFragment;
 import com.reeuse.materialdesign.ui.fragment.HomeFragment;
+import com.reeuse.materialdesign.ui.fragment.SnackbarFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -47,16 +49,18 @@ public class MainActivity extends AppCompatActivity {
     private void setUpToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         //To show the default menu icon
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            actionBar.setTitle(R.string.tool_bar);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         /**
          * To animate the menu to arrow and arrow to menu back while tapping the home menu.
          */
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name) {
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.tool_bar, R.string.tool_bar) {
             @Override
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
@@ -87,9 +91,19 @@ public class MainActivity extends AppCompatActivity {
                         setUpFragment(new FloatingActionButtonFragment());
                         break;
                     case R.id.menu_snack_bar:
+                        setUpFragment(new SnackbarFragment());
                         break;
                     case R.id.menu_recycler:
-
+                        startActivity(new Intent(MainActivity.this, RecyclerViewActivity.class));
+                        break;
+                    case R.id.menu_collapsing_tb:
+                        startActivity(new Intent(MainActivity.this, CollasableTBActivity.class));
+                        break;
+                    case R.id.menu_tab_layout:
+                        startActivity(new Intent(MainActivity.this, TabLayoutActivity.class));
+                        break;
+                    case R.id.menu_palette:
+                        startActivity(new Intent(MainActivity.this, PaletteConceptActivity.class));
                         break;
                     case R.id.sub_menu_settings:
                         break;
@@ -102,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpFragment(Fragment fragment) {
         if (fragment != null) {
-            String fragmentName = fragment.getClass().getName();
+            String fragmentName = fragment.getClass().getSimpleName();
             FragmentManager fragmentManager = getSupportFragmentManager();
             boolean isFragmentPopped = fragmentManager.popBackStackImmediate(fragmentName, 0);
 

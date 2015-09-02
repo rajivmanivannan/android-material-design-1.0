@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 Rajiv M
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,34 +14,36 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:gravity="center_vertical">
+    android:layout_margin="@dimen/card_margin">
 
-    <com.reeuse.materialdesign.customviews.CircularImageView
-        android:id="@+id/profile_image"
-        android:layout_width="@dimen/list_item_avatar_size"
-        android:layout_height="@dimen/list_item_avatar_size"
-        android:layout_marginRight="16dp"/>
-
-    <TextView
-        android:id="@+id/user_name"
-        android:layout_toRightOf="@+id/profile_image"
+    <ImageView
+        android:id="@+id/product_image_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceListItem"/>
+        android:layout_height="200dp"
+        android:background="@drawable/bg_item"
+        android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/total_points"
-        android:layout_toRightOf="@+id/profile_image"
-        android:layout_below="@+id/user_name"
+    <LinearLayout
+        android:id="@+id/product_name_holder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceListItem"/>
+        android:layout_height="45dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/product_name_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
