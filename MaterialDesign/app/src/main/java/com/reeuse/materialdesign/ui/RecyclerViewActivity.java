@@ -11,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.reeuse.materialdesign.R;
 import com.reeuse.materialdesign.adapter.RecyclerViewAdapter;
@@ -67,6 +68,15 @@ public class RecyclerViewActivity extends AppCompatActivity {
         // Load data.
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(userItemList);
         recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerViewAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, ProductItem viewModel) {
+
+
+
+
+            }
+        });
     }
 
     @Override

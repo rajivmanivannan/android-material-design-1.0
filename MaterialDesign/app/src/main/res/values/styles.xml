@@ -35,7 +35,14 @@
         <item name="colorControlHighlight">@color/accent_translucent</item> 
         <item name="selectableItemBackground">@drawable/selectable_item_background</item>
         <item name="android:selectableItemBackground">@drawable/selectable_item_background</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
+
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
 
     <style name="FabStyle">
         <item name="android:layout_width">wrap_content</item>

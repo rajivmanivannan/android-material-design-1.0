@@ -28,9 +28,10 @@ public class FloatingActionButtonFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"I am FloatingActionButton",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "You clicked FloatingActionButton", Toast.LENGTH_SHORT).show();
             }
         });
+
         return view;
     }
 

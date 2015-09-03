@@ -1,11 +1,4 @@
-/**
- * @category Contus
- * @package com.reeuse.materialdesign.adapter
- * @version 1.0
- * @author Contus Team <developers@contus.in>
- * @copyright Copyright (C) 2015 Contus. All rights reserved.
- * @license http://www.apache.org/licenses/LICENSE-2.0
- */
+
 package com.reeuse.materialdesign.adapter;
 
 import android.os.Handler;
@@ -18,7 +11,6 @@ import android.widget.TextView;
 
 import com.reeuse.materialdesign.R;
 import com.reeuse.materialdesign.model.ProductItem;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,7 +37,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ProductItem item = items.get(position);
         holder.productName.setText(item.getProductName());
         holder.productImage.setImageBitmap(null);
-       // Picasso.with(holder.productImage.getContext()).load(item.getImageUrl()).into(holder.productImage);
         holder.itemView.setTag(item);
     }
 
