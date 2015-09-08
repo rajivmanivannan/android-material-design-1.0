@@ -105,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_palette:
                         startActivity(new Intent(MainActivity.this, PaletteConceptActivity.class));
                         break;
+                    case R.id.menu_percent:
+                        startActivity(new Intent(MainActivity.this, PercentActivity.class));
+                        break;
                     case R.id.sub_menu_settings:
                         break;
                 }

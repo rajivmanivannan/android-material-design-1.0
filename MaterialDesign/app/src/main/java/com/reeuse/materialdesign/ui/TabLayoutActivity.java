@@ -44,6 +44,7 @@ public class TabLayoutActivity extends AppCompatActivity {
         SlideTabAdapter slideTabAdapter = new SlideTabAdapter(getSupportFragmentManager());
         slideTabAdapter.addFragment(new AFragment(), "Tab A");
         slideTabAdapter.addFragment(new BFragment(), "Tab B");
+
         viewpager.setAdapter(slideTabAdapter);
         tabLayout.setupWithViewPager(viewpager);
     }
