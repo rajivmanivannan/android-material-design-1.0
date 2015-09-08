@@ -44,7 +44,7 @@ public class PaletteConceptActivity extends AppCompatActivity {
 
     private void setHeaderImage() {
         String url = "https://scontent-sin1-1.xx.fbcdn.net/hphotos-xlp1/v/t1.0-9/11895990_1042466722438619_8198324640250634765_n.jpg?oh=779ef89ad50cbe5edb0007c4fd22ac1c&oe=565F44EA";
-        Picasso.with(this).load(url).into(headerImage, new Callback() {
+        Picasso.with(this).load(url).placeholder(R.color.primary_light).into(headerImage, new Callback() {
             @Override
             public void onSuccess() {
                 Bitmap bitmap = ((BitmapDrawable) headerImage.getDrawable()).getBitmap();
