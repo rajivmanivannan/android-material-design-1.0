@@ -4,7 +4,7 @@ Exploring: The concept,different types of view and layouts introduced in Android
 
 In this project,I have Implemented the below views/components for the above Android support libraries.
 
-<b> com.android.support:design </b> \n
+<b> com.android.support:design </b> /n
 AppBarLayout
 ToolBar
 Tab Layout
