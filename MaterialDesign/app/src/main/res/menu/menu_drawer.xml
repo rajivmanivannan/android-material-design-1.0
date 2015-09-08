@@ -44,6 +44,11 @@
             android:id="@+id/menu_palette"
             android:icon="@drawable/ic_favorite"
             android:title="@string/menu_palette" />
+        <item
+            android:id="@+id/menu_percent"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/menu_percent" />
+
         <item android:title="@string/sub_menu_title">
             <menu>
                 <item
