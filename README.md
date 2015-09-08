@@ -4,7 +4,7 @@ Exploring: The concept,different types of view and layouts introduced in Android
 
 In this project,I have Implemented the below views/components for the above Android support libraries.
 
-# com.android.support:design
+<b> com.android.support:design </b>
 AppBarLayout
 ToolBar
 Tab Layout
@@ -16,15 +16,15 @@ CoordinatorLayout
 NestedScrollView
 TextInputLayout
 
-# com.android.support:recyclerview
+com.android.support:recyclerview
 Recycler View
 
-# com.android.support:cardview
+com.android.support:cardview
 Card View
 
-# com.android.support:palette
+com.android.support:palette
 Palette
 
-# com.android.support:percent
+com.android.support:percent
 PercentRelativeLayout
 PercentFrameLayout
