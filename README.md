@@ -1,30 +1,29 @@
 # Android Material design
-Exploring: The concept,different types of view and layouts introduced in Android Material Design using the Backward compatibility Design library
-"com.android.support:design" and other new libraries like "com.android.support:palette","com.android.support:percent" etc,.
+Exploring: The concept,different types of view and layouts introduced in Android Material Design using the Backward compatibility Design library"com.android.support:design" and other new libraries like "com.android.support:palette","com.android.support:percent" etc,.<br /><br /><br />
 
-In this project,I have Implemented the below views/components for the above Android support libraries.
+In this project,I have Implemented the below views/components for the above Android support libraries.<br /><br />
 
-<b> com.android.support:design </b> /n
-AppBarLayout
-ToolBar
-Tab Layout
-Collapsing Toolbar Layout
-NavigationView
-Snack Bar
-Floating Action Button
-CoordinatorLayout
-NestedScrollView
-TextInputLayout
+<b> com.android.support:design </b> <br />
+AppBarLayout<br />
+ToolBar<br />
+Tab Layout<br />
+Collapsing Toolbar Layout<br />
+NavigationView<br />
+Snack Bar<br />
+Floating Action Button<br />
+CoordinatorLayout<br />
+NestedScrollView<br />
+TextInputLayout<br />
 
-com.android.support:recyclerview
-Recycler View
+<b>com.android.support:recyclerview </b><br />
+Recycler View<br />
 
-com.android.support:cardview
-Card View
+<b>com.android.support:cardview</><br />
+Card View<br />
 
-com.android.support:palette
+<b>com.android.support:palette</b><br />
 Palette
 
-com.android.support:percent
-PercentRelativeLayout
+<b>com.android.support:percent </b><br />
+PercentRelativeLayout<br />
 PercentFrameLayout
