@@ -32,9 +32,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_centerInParent="true"
-        android:gravity="center"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -46,8 +45,6 @@
                 android:id="@+id/et_user_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:imeOptions="actionNext"
                 android:hint="@string/user_name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -62,8 +59,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:imeOptions="actionDone"
-                android:singleLine="true"
                 android:inputType="textWebPassword" />
         </android.support.design.widget.TextInputLayout>
 
