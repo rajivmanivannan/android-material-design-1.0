@@ -17,7 +17,7 @@ Recycler View<br />
 <b>com.android.support:cardview </b><br />
 Card View<br />
 <b>com.android.support:palette </b><br />
-Palette
+Palette<br />
 <b>com.android.support:percent </b><br/>
 PercentRelativeLayout<br />
 PercentFrameLayout
