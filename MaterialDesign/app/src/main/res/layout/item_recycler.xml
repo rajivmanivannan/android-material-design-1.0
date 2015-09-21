@@ -24,7 +24,7 @@
         android:id="@+id/product_image_img"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/bg_item"
+        android:background="@drawable/bg_image"
         android:scaleType="centerCrop" />
 
     <LinearLayout

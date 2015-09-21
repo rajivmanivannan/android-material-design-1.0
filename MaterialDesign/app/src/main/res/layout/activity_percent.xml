@@ -37,7 +37,7 @@
     <ImageView
         android:id="@+id/top_image_view"
         android:layout_below="@+id/apptem"
-        android:background="@drawable/bg_item"
+        android:background="@drawable/bg_image"
         app:layout_heightPercent="50%"
         app:layout_widthPercent="100%" />
 

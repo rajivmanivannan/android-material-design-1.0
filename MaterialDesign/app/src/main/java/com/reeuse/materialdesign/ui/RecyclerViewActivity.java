@@ -3,6 +3,9 @@ package com.reeuse.materialdesign.ui;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,9 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import com.reeuse.materialdesign.R;
 import com.reeuse.materialdesign.adapter.RecyclerViewAdapter;
+import com.reeuse.materialdesign.adapter.RecyclerViewScrollListener;
 import com.reeuse.materialdesign.model.ProductItem;
 
 import java.util.ArrayList;
@@ -25,11 +31,21 @@ public class RecyclerViewActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.floating_action_button);
+        mSwipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.accent), ContextCompat.getColor(this, R.color.accent_bright), ContextCompat.getColor(this, R.color.accent_bright));
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+            }
+        });
         setupToolbar();
         setUpRecyclerView();
         loadData();
@@ -53,6 +69,19 @@ public class RecyclerViewActivity extends AppCompatActivity {
         // allows for optimizations if all item views are of the same size:
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addOnScrollListener(new RecyclerViewScrollListener() {
+            @Override
+            protected void hide() {
+                floatingActionButton.animate().translationY(floatingActionButton.getHeight() + 20).setInterpolator(new AccelerateInterpolator(2)).start();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            protected void show() {
+                floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+            }
+        });
+
     }
 
 
@@ -68,12 +97,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
         // Load data.
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(userItemList);
         recyclerView.setAdapter(recyclerViewAdapter);
+        mSwipeRefreshLayout.setRefreshing(false);
         recyclerViewAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, ProductItem viewModel) {
-
-
-
 
             }
         });
