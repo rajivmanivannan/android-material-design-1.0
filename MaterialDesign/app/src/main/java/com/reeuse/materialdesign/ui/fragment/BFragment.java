@@ -3,10 +3,10 @@ package com.reeuse.materialdesign.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +25,7 @@ import java.util.List;
 public class BFragment extends Fragment {
 
     private RecyclerView recyclerView;
+
     public BFragment() {
         // Required empty public constructor
     }
@@ -40,11 +41,12 @@ public class BFragment extends Fragment {
         loadData();
         return view;
     }
+
     private void setUpRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), R.drawable.divider,
+        recyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(getActivity(), R.drawable.line_divider),
                 true, true));
         // allows for optimizations if all item views are of the same size:
         recyclerView.setHasFixedSize(true);

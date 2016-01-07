@@ -15,14 +15,15 @@ import android.view.View;
  * DividerItemDecoration.java
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
+
     private Drawable mDivider;
     private boolean mShowFirstDivider = false;
     private boolean mShowLastDivider = false;
 
-    int mOrientation = -1;
 
     public DividerItemDecoration(Context context, AttributeSet attrs) {
-        final TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
+        final TypedArray a = context
+                .obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
         mDivider = a.getDrawable(0);
         a.recycle();
     }
@@ -30,17 +31,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public DividerItemDecoration(Context context, AttributeSet attrs, boolean showFirstDivider,
                                  boolean showLastDivider) {
         this(context, attrs);
-        mShowFirstDivider = showFirstDivider;
-        mShowLastDivider = showLastDivider;
-    }
-
-    public DividerItemDecoration(Context context, int resId) {
-        mDivider = ContextCompat.getDrawable(context, resId);
-    }
-
-    public DividerItemDecoration(Context context, int resId, boolean showFirstDivider,
-                                 boolean showLastDivider) {
-        this(context, resId);
         mShowFirstDivider = showFirstDivider;
         mShowLastDivider = showLastDivider;
     }
@@ -63,25 +53,14 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         if (mDivider == null) {
             return;
         }
-
-        int position = parent.getChildAdapterPosition(view);
-        if (position == RecyclerView.NO_POSITION || (position == 0 && !mShowFirstDivider)) {
+        if (parent.getChildPosition(view) < 1) {
             return;
         }
 
-        if (mOrientation == -1)
-            getOrientation(parent);
-
-        if (mOrientation == LinearLayoutManager.VERTICAL) {
+        if (getOrientation(parent) == LinearLayoutManager.VERTICAL) {
             outRect.top = mDivider.getIntrinsicHeight();
-            if (mShowLastDivider && position == (state.getItemCount() - 1)) {
-                outRect.bottom = outRect.top;
-            }
         } else {
             outRect.left = mDivider.getIntrinsicWidth();
-            if (mShowLastDivider && position == (state.getItemCount() - 1)) {
-                outRect.right = outRect.left;
-            }
         }
     }
 
@@ -94,7 +73,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
         // Initialization needed to avoid compiler warning
         int left = 0, right = 0, top = 0, bottom = 0, size;
-        int orientation = mOrientation != -1 ? mOrientation : getOrientation(parent);
+        int orientation = getOrientation(parent);
         int childCount = parent.getChildCount();
 
         if (orientation == LinearLayoutManager.VERTICAL) {
@@ -112,7 +91,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
 
             if (orientation == LinearLayoutManager.VERTICAL) {
-                top = child.getTop() - params.topMargin - size;
+                top = child.getTop() - params.topMargin;
                 bottom = top + size;
             } else { //horizontal
                 left = child.getLeft() - params.leftMargin;
@@ -125,31 +104,26 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         // show last divider
         if (mShowLastDivider && childCount > 0) {
             View child = parent.getChildAt(childCount - 1);
-            if (parent.getChildAdapterPosition(child) == (state.getItemCount() - 1)) {
-                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-                if (orientation == LinearLayoutManager.VERTICAL) {
-                    top = child.getBottom() + params.bottomMargin;
-                    bottom = top + size;
-                } else { // horizontal
-                    left = child.getRight() + params.rightMargin;
-                    right = left + size;
-                }
-                mDivider.setBounds(left, top, right, bottom);
-                mDivider.draw(c);
+            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+            if (orientation == LinearLayoutManager.VERTICAL) {
+                top = child.getBottom() + params.bottomMargin;
+                bottom = top + size;
+            } else { // horizontal
+                left = child.getRight() + params.rightMargin;
+                right = left + size;
             }
+            mDivider.setBounds(left, top, right, bottom);
+            mDivider.draw(c);
         }
     }
 
     private int getOrientation(RecyclerView parent) {
-        if (mOrientation == -1) {
-            if (parent.getLayoutManager() instanceof LinearLayoutManager) {
-                LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
-                mOrientation = layoutManager.getOrientation();
-            } else {
-                throw new IllegalStateException(
-                        "DividerItemDecoration can only be used with a LinearLayoutManager.");
-            }
+        if (parent.getLayoutManager() instanceof LinearLayoutManager) {
+            LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
+            return layoutManager.getOrientation();
+        } else {
+            throw new IllegalStateException(
+                    "DividerItemDecoration can only be used with a LinearLayoutManager.");
         }
-        return mOrientation;
     }
 }

@@ -30,4 +30,11 @@
     <color name="accent_translucent">#c5cde4e9</color>
     <color name="accent_bright">#a2c5ff</color>
     <color name="header_background">#EFFB42</color>
+
+
+    <!-- basic colors -->
+    <color name="green">#27D34D</color>
+    <color name="blue">#2A91BD</color>
+    <color name="orange">#FF9D2F</color>
+    <color name="red">#FF432F</color>
 </resources>

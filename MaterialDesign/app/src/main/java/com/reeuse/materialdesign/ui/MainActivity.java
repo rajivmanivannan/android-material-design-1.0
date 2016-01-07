@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_container, fragment, fragmentName);
                 fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.commit();
             }
         }

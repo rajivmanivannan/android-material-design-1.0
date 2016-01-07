@@ -69,6 +69,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
+
+    public void add(ProductItem item, int position) {
+        items.add(position, item);
+        notifyItemInserted(position);
+    }
+
+    public void remove(ProductItem item) {
+        int position = items.indexOf(item);
+        items.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
     public interface OnItemClickListener {
         void onItemClick(View view, ProductItem viewModel);
     }
