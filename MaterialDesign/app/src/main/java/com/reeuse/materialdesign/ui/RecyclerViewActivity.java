@@ -20,6 +20,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
 import com.reeuse.materialdesign.R;
+import com.reeuse.materialdesign.adapter.EndlessRecyclerOnScrollListener;
 import com.reeuse.materialdesign.adapter.RecyclerItemClickListener;
 import com.reeuse.materialdesign.adapter.RecyclerViewAdapter;
 import com.reeuse.materialdesign.adapter.RecyclerViewScrollListener;
@@ -77,6 +78,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.line_divider), true, true));
+       /* recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int current_page) {
+
+            }
+        });*/
         recyclerView.addOnScrollListener(new RecyclerViewScrollListener() {
             @Override
             protected void hide() {

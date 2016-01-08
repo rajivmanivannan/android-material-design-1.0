@@ -31,9 +31,7 @@ public class ProgressIndicator extends Dialog {
         customProgressBar = (CustomProgressBar) dialog.findViewById(R.id.loading_progress);
         customProgressBar.setColorSchemeResources(R.color.red, R.color.green, R.color.blue, R.color.orange);
         dialog.setCancelable(true);
-        if (dialog != null) {
-            dialog.show();
-        }
+        dialog.show();
         return dialog;
     }
 

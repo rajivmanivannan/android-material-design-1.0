@@ -12,13 +12,16 @@ import android.view.ViewGroup;
  * This is the wrap content of the recycler view.
  */
 public class AutoWrapLayoutManager extends LinearLayoutManager {
-    public AutoWrapLayoutManager(Context context, int orientation, boolean reverseLayout)    {
+    private int[] mMeasuredDimension = new int[2];
+
+    public AutoWrapLayoutManager(Context context, int orientation, boolean reverseLayout) {
         super(context, orientation, reverseLayout);
     }
-    private int[] mMeasuredDimension = new int[2];
+
     public AutoWrapLayoutManager(Context context) {
         super(context);
     }
+
     @Override
     public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state,
                           int widthSpec, int heightSpec) {
@@ -29,7 +32,6 @@ public class AutoWrapLayoutManager extends LinearLayoutManager {
         int width = 0;
         int height = 0;
         for (int i = 0; i < getItemCount(); i++) {
-
             if (getOrientation() == HORIZONTAL) {
                 measureScrapChild(recycler, i,
                         View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
@@ -53,15 +55,19 @@ public class AutoWrapLayoutManager extends LinearLayoutManager {
         switch (widthMode) {
             case View.MeasureSpec.EXACTLY:
                 width = widthSize;
+                break;
             case View.MeasureSpec.AT_MOST:
             case View.MeasureSpec.UNSPECIFIED:
+            default:
         }
 
         switch (heightMode) {
             case View.MeasureSpec.EXACTLY:
                 height = heightSize;
+                break;
             case View.MeasureSpec.AT_MOST:
             case View.MeasureSpec.UNSPECIFIED:
+            default:
         }
 
         setMeasuredDimension(width, height);

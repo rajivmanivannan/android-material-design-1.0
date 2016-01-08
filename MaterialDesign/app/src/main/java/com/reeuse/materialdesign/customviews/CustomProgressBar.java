@@ -1,6 +1,5 @@
 package com.reeuse.materialdesign.customviews;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -13,7 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
-import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
@@ -35,7 +33,6 @@ public class CustomProgressBar extends ImageView {
     private static final float Y_OFFSET = 1.75f;
     private static final float SHADOW_RADIUS = 3.5f;
     private static final int SHADOW_ELEVATION = 4;
-
 
     private static final int DEFAULT_CIRCLE_BG_LIGHT = 0xFFFAFAFA;
     private static final int DEFAULT_CIRCLE_DIAMETER = 56;
@@ -62,35 +59,34 @@ public class CustomProgressBar extends ImageView {
 
     public CustomProgressBar(Context context) {
         super(context);
-        this.context = context;
+        this.context =context;
         init(context, null, 0);
 
     }
 
     public CustomProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context = context;
+        this.context =context;
         init(context, attrs, 0);
 
     }
 
     public CustomProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
+        this.context =context;
         init(context, attrs, defStyleAttr);
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        this.context = context;
+        this.context =context;
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.CustomProgressBar, defStyleAttr, 0);
+
 
         final float density = getContext().getResources().getDisplayMetrics().density;
 
         mBackGroundColor = a.getColor(
                 R.styleable.CustomProgressBar_background_color, DEFAULT_CIRCLE_BG_LIGHT);
-        int mProgressColor = a.getColor(
-                R.styleable.CustomProgressBar_progress_color, DEFAULT_CIRCLE_BG_LIGHT);
         mInnerRadius = a.getDimensionPixelOffset(
                 R.styleable.CustomProgressBar_inner_radius, -1);
         mProgressStokeWidth = a.getDimensionPixelOffset(
@@ -136,7 +132,6 @@ public class CustomProgressBar extends ImageView {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
@@ -197,29 +192,12 @@ public class CustomProgressBar extends ImageView {
             canvas.drawText(text, x, y, mTextPaint);
         }
     }
-
-    @Override
-    final public void setImageResource(int resId) {
-
-    }
-
-
     public boolean isShowArrow() {
         return mShowArrow;
     }
 
     public void setShowArrow(boolean showArrow) {
         this.mShowArrow = showArrow;
-    }
-
-
-    @Override
-    final public void setImageURI(Uri uri) {
-        super.setImageURI(uri);
-    }
-
-    @Override
-    final public void setImageDrawable(Drawable drawable) {
     }
 
     public void setAnimationListener(Animation.AnimationListener listener) {
@@ -247,7 +225,7 @@ public class CustomProgressBar extends ImageView {
         final Resources res = getResources();
         int[] colorRes = new int[colorResIds.length];
         for (int i = 0; i < colorResIds.length; i++) {
-            colorRes[i] = res.getColor(colorResIds[i]);
+            colorRes[i] = ContextCompat.getColor(context, colorResIds[i]);
         }
         setColorSchemeColors(colorRes);
     }
@@ -262,8 +240,8 @@ public class CustomProgressBar extends ImageView {
 
     public void setBackgroundColor(int colorRes) {
         if (getBackground() instanceof ShapeDrawable) {
+            final Resources res = getResources();
             ((ShapeDrawable) getBackground()).getPaint().setColor(ContextCompat.getColor(context, colorRes));
-
         }
     }
 
@@ -293,19 +271,12 @@ public class CustomProgressBar extends ImageView {
         }
     }
 
-
     public boolean circleBackgroundEnabled() {
         return mCircleBackgroundEnabled;
     }
 
     public void setCircleBackgroundEnabled(boolean enableCircleBackground) {
         this.mCircleBackgroundEnabled = enableCircleBackground;
-    }
-
-
-    @Override
-    public int getVisibility() {
-        return super.getVisibility();
     }
 
     @Override
@@ -360,9 +331,9 @@ public class CustomProgressBar extends ImageView {
         public void draw(Canvas canvas, Paint paint) {
             final int viewWidth = CustomProgressBar.this.getWidth();
             final int viewHeight = CustomProgressBar.this.getHeight();
-            canvas.drawCircle(viewWidth / 2, viewHeight / 2, (mCircleDiameter / 2 + mShadowRadius),
+            canvas.drawCircle(viewWidth / 2, viewHeight / 2, mCircleDiameter / 2 + mShadowRadius,
                     mShadowPaint);
-            canvas.drawCircle(viewWidth / 2, viewHeight / 2, (mCircleDiameter / 2), paint);
+            canvas.drawCircle(viewWidth / 2, viewHeight / 2, mCircleDiameter / 2, paint);
         }
     }
 }
