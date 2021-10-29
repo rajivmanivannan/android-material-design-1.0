@@ -1,4 +1,4 @@
-# Android Material design
+# Android Material Design
 Exploring: The concept,different types of view and layouts introduced in Android Material Design using the Backward compatibility Design library and other new libraries Palette, PercentRelativeLayout etc,.<br/><br/>
 In this project,the below views/components from the above Android support libraries are Implemented.<br/><br/>
 AppBarLayout<br/>
